@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),//输出路径，就是新建的dist目录，
         publicPath: '/dist/',
-        filename: 'visual-plantform.min.js',
+        filename: 'visual-platform.min.js',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },

@@ -1,5 +1,5 @@
 {
-  "name": "visual-plantform",
+  "name": "visual-platform",
   "version": "1.0.0",
   "description": "基于Vue的可视化大屏开发框架",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BugsMaster/visual-plantform.git"
+    "url": "https://github.com/BugsMaster/visual-platform.git"
   },
   "keywords": [
     "visual",
