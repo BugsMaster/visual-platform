@@ -1,0 +1,20 @@
+{
+  "name": "visual-plantform",
+  "version": "1.0.0",
+  "description": "基于Vue的可视化大屏开发框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm-test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BugsMaster/visual-plantform.git"
+  },
+  "keywords": [
+    "visual",
+  "vue",
+  "GUI"
+  ],
+  "author": "漆黑小T",
+  "license": "ISC"
+}
