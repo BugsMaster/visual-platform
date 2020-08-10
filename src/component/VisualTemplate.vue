@@ -1,19 +1,18 @@
-<!-- 可视化配置项-----云臻智联出品 ©漆黑小T -->
 <template>
     <div id="visual" class="visual">
         <div class="layoutbox bgc" :style="{backgroundImage:`url(${bgcPath})`}">
             <div class="title-box">
-                <h1 :style="{fontSize:title.size,color:title.color}">{{title.name}}</h1>
-                <h3>{{currentTime}}</h3>
+                <h1 :style="{fontSize:title.size,color:title.color,paddingTop:title.top+'px'}">{{title.name}}</h1>
+                <h3 v-if="title.timeShow">{{currentTime}}</h3>
             </div>
             <ul class="section-ul" v-if="isEditModel">
                 <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
                  v-for="(item,index) in sectionArr"
                  @mousedown="dragMove($event,index)">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
-                    <section-chart :styleType="item.styleType">
+                    <section-chart :borderOptions="item.borderOptions">
                         <div class="chart-content" slot="chart-content">
-                            <slot :name="index"></slot>
+                            <slot :name="index+1"></slot>
                         </div>
                     </section-chart>
                     <span class="edit el-icon-edit" @click="editRec(item,index)"></span>
@@ -23,7 +22,7 @@
                 <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
                  v-for="(item,index) in sectionArr">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
-                    <section-chart :styleType="item.styleType">
+                    <section-chart :borderOptions="item.borderOptions">
                         <div class="chart-content" slot="chart-content">
                             <slot :name="index"></slot>
                         </div>
@@ -113,10 +112,16 @@
                             <el-input size="small" placeholder="请输入" v-model="mainForm.name" clearable></el-input>
                         </el-form-item>
                         <el-form-item label="字体大小" prop="size">
-                            <el-input-number size="small" placeholder="请输入" v-model="mainForm.size" clearable></el-input-number>
+                            <el-input-number size="small" placeholder="请输入" v-model="mainForm.size" :min="14" clearable></el-input-number>
+                        </el-form-item>
+                        <el-form-item label="Top" prop="top">
+                            <el-input-number size="small" placeholder="请输入" v-model="mainForm.top" :min="0" clearable></el-input-number>
                         </el-form-item>
                         <el-form-item label="颜色：">
                             <el-color-picker v-model="mainForm.color"></el-color-picker>
+                        </el-form-item>
+                        <el-form-item label="时间展示：">
+                            <el-switch v-model="mainForm.timeShow"></el-switch>
                         </el-form-item>
                     </el-form>
                 </div>
@@ -142,14 +147,18 @@ export default {
             title:{
                 name:'',
                 size:16,
-                color:''
+                color:'',
+                top:0,
+                timeShow:true
             },
             // 主配置
             mainFormVisible:false,
             mainForm:{
                 name:'',
                 size:16,
-                color:''
+                color:'',
+                timeShow:true,
+                top:0
             },
             // 单元配置
             chartFormVisible:false,
@@ -241,22 +250,28 @@ export default {
         editMain(){
             this.mainFormVisible = true;
             this.mainForm.name = this.title.name;
+            this.mainForm.top = this.title.top;
             this.mainForm.size = this.title.size;
             this.mainForm.color = this.title.color;
+            this.mainForm.timeShow = this.title.timeShow;
         },
         cancleForm(){
             this.mainFormVisible = false;
             this.mainForm = {
                 name:'',
                 size:16,
-                color:''
+                top:0,
+                color:'',
+                timeShow:true
             };
         },
         confirmForm(){
             this.title = {
                 name:this.mainForm.name,
                 size:this.mainForm.size,
+                top:this.mainForm.top,
                 color:this.mainForm.color,
+                timeShow:this.mainForm.timeShow,
             };
             this.mainFormVisible = false;
         },

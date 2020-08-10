@@ -1,25 +1,36 @@
-// 可视化配置项-----云臻智联出品 ©漆黑小T 
+// 可视化配置项----- ©漆黑小T 
 const visualConfig ={
     bgcPath:'/img/bg_index.jpg',
     title:{
         name:"可视化平台",
+        top:0,
         size:16,
-        color:'#fff'
+        color:'#fff',
+        timeShow:true
     },
     sectionArr:[
-        // {
-            // title:{name:'one',size:18,position:{x:20,y:20},color:'#fff',isShow:true},
-            // width:500,
-            // height:300,
-            // styleType:1,
-            // position:{
-            //     x:0,
-            //     y:0
-            // },
-        // },
+        {
+            title:{name:'one',size:18,position:{x:20,y:20},color:'#fff',isShow:true},
+            width:500,
+            height:300,
+            borderOptions:{
+                type:1,
+                colorArr:"['red', 'green']",
+                backgroundColor:'blue',
+                reverse:false,
+                dur:3,
+                title:'',
+                titleWidth:250
+            },
+            position:{
+                x:0,
+                y:0
+            },
+        }
     ]
 };
-const visualSetOptions = function(deconfig,initconfig){
+const visualSetOptions = function(deconfig){
+    let initconfig = visualConfig;
     for (const key in initconfig) {
         if (initconfig.hasOwnProperty(key)) {
             switch (key) {
@@ -29,13 +40,16 @@ const visualSetOptions = function(deconfig,initconfig){
                 case 'title':
                     if(deconfig.hasOwnProperty('title')){
                         if(!deconfig.title.hasOwnProperty('name')) { deconfig.title['name'] = initconfig.title['name']; };
+                        if(!deconfig.title.hasOwnProperty('top')) { deconfig.title['top'] = initconfig.title['top']; };
                         if(!deconfig.title.hasOwnProperty('size')) { deconfig.title['size'] = initconfig.title['size']; };
                         if(!deconfig.title.hasOwnProperty('color')) { deconfig.title['color'] = initconfig.title['color']; };
+                        if(!deconfig.title.hasOwnProperty('timeShow')) { deconfig.title['timeShow'] = initconfig.title['timeShow']; };
                     }else{
                         deconfig.title = {
                             name:"可视化平台",
                             size:16,
-                            color:'#fff'
+                            color:'#fff',
+                            timeShow:true
                         }
                     }
                     break;
@@ -55,8 +69,27 @@ const visualSetOptions = function(deconfig,initconfig){
                             }
                             if(!item.hasOwnProperty('width')){ item.width = 500 };
                             if(!item.hasOwnProperty('height')){ item.height = 300 };
-                            if(!item.hasOwnProperty('styleType')){ item.styleType = 1 };
                             if(!item.hasOwnProperty('position')){ item.position = {x:20*index,y:20*index}};
+                            // borderOptions
+                            if(item.hasOwnProperty('borderOptions')){
+                                if(!item.borderOptions.hasOwnProperty('type')) { item.borderOptions['type'] = 0};
+                                if(!item.borderOptions.hasOwnProperty('colorArr')) { item.borderOptions['colorArr'] = [] };
+                                if(!item.borderOptions.hasOwnProperty('backgroundColor')) { item.borderOptions['backgroundColor'] = 'rgba(35,70,107,.3)' };
+                                if(!item.borderOptions.hasOwnProperty('reverse')) { item.borderOptions['reverse'] = false };
+                                if(!item.borderOptions.hasOwnProperty('dur')) { item.borderOptions['dur'] = 3;};
+                                if(!item.borderOptions.hasOwnProperty('title')) { item.borderOptions['title'] = '';};
+                                if(!item.borderOptions.hasOwnProperty('titleWidth')) { item.borderOptions['titleWidth'] = 250;};
+                            }else{
+                                item.borderOptions = {
+                                    type:0,
+                                    colorArr:[],
+                                    backgroundColor:'rgba(35,70,107,.3)',
+                                    reverse:false,
+                                    dur:3,
+                                    title:'',
+                                    titleWidth:250
+                                }
+                            }
                         })
                     }
                     break;
