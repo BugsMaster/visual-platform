@@ -74,12 +74,12 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
             </div>
             <div slot="3">
 				<!-- 第三个单元 -->
-                <dv-decoration-3 style="width:250px;height:30px;" />
+                <!--<dv-decoration-3 style="width:250px;height:30px;" /> DataV装饰器-->
             </div>
     </VisualTemplate>
 
 	引入：
-	import VisualTemplate, { visualConfig,visualSetOptions} from 'visual-plantform'
+	import VisualTemplate, { visualConfig,visualSetOptions} from 'visual-platform'
 	
 	自定义配置：
 		let	defConfig = {
