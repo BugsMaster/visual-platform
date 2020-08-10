@@ -126,4 +126,4 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	注：visualConfig 可以导出完整的默认配置
 
 
->作者邮箱:lixingtan163@163.com
+>作者邮箱: lixingtan163@163.com
