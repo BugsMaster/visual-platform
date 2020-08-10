@@ -31,12 +31,12 @@
             </ul>
             <div class="operation-panel" v-if="isPanelShow">
                 <ul class="operation-ul">
-                    <li @click="initApp"><span class="nucfont inuc-init" title="位置初始化"></span></li>
-                    <li @click="gridApp"><span class="nucfont inuc-grid" title="格式化位置"></span></li>
-                    <li @click="isEditModel=!isEditModel"><span class="nucfont inuc-fold-line" :class="{'green':isEditModel}"></span></li>
-                    <li @click="editMain"><span class="nucfont inuc-system"></span></li>
-                    <li @click="clearConfig"><span class="nucfont inuc-noconnect" title="清除"></span></li>
-                    <li @click="saveConfig"><span class="nucfont inuc-save" title="保存"></span></li>
+                    <li @click="initApp"><span class="platfont  iconplat-init" title="位置初始化"></span></li>
+                    <li @click="gridApp"><span class="platfont  iconplat-grid" title="格式化位置"></span></li>
+                    <li @click="isEditModel=!isEditModel"><span class="platfont  iconplat-fold-line" :class="{'green':isEditModel}"></span></li>
+                    <li @click="editMain"><span class="platfont  iconplat-system"></span></li>
+                    <li @click="clearConfig"><span class="platfont  iconplat-noconnect" title="清除"></span></li>
+                    <li @click="saveConfig"><span class="platfont  iconplat-save" title="保存"></span></li>
                 </ul>
             </div>
         </div>
@@ -353,6 +353,48 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+@font-face {font-family: "platfont";
+  src: url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.eot?t=1597053007901'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.eot?t=1597053007901#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAWwAAsAAAAACwgAAAVhAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDTgqIaIchATYCJAMcCxAABCAFhG0HXRtmCREVpOWRfXFgG3MP6iEQtULZ6OedYy7dUDY0mO/x8N9+v99nZq5g2iCJRrqvTsIji6SJKlYhJvjaf/8dLeH9PJ72fpJuWTIZ7ehmkE5I79wepLYHeDqozcFuAIT/vmv+gI2KMIdy9pNHfZQCpS/NaGlN7V9Jt8JhSqhdFeCVkOYAjZrQU5MA7EiouUlSQm4Tr+bFSkNuy5v3E+g2yRPaTEzPB1LBDwvESVNDFZAFv9LACK2rRs4tEM9QadN07AKAJ/f38Q3+QYKkysCP3TpOqAX+G/nyIc6q2EMThMftRTG4iIwloBCXaPwCHvCSs3djNydsAt1aSXojn9s8v/XyoUq1SjQryxlVu3XrF//gESpZkdREDdze26HuNmreSCUheLOSUPFmLSHzZiOh8HZLQuLjocNVJTcH92MMxDFA/GPUqXpShLmo3dU016W0dAM0PQ01NAj+ktHUOv+YxSJjZpHYMHIgEYlkFCXeAv4kR1eE8xewRlE7bZVNYamUptf6Rd5EuFBiEtOfAKzUiZbIEepNi2K4YAvx6D0OoIXda5VKhuMKFArhjRsVW6uWaymtg9t4Wz8BW3LUUXPTcfNivY3HzNQypFtVX35CiBGQ1g54vkQKrreIZRu6mXx07QIKiY3ra3MKFkuM6hpG5y9YegRTm01Qf9QpxQ2OlFMcl7V59fb9jjlWAMG9oGC5uUiZq2TQok2NaxUJvZzDOmXi2RsVQxdudRdjhhLLzBFDbTLRgzfgOLtpiZTd4kgd94nruRhmkUi+cSR7Iz13kHMo61qdLJLTtEJRzW6hKIbeKBUuaYmZFaptPC1ilHprBqewUlwLq6YR1UbjVLkWplkAdERefS7gTl344PYhKem/2wXLsQKje0b1LCsYa3mh4k1Kwr9z4RQnMD7Kq+cdNSZq4npPa6bAeDC76frh3pWbG5h45M+gnh7ECK3RaUvaElSqQVtP+6TasZJPBaxh1wRQ48dDF0PB5KK3o22bMF9FbStijJUFuyV8PQi5rSS89XDIQ7Y6hJ7q7KCemp6dfspocL1rv7d2ETnl3poDK7SKtVr3uo6nxFHDmopY1+n08KjCJleWnhYx1MPG8+vuJi48a4X23iDZsBkrcw7oyIIkw3JXqZcYYDlBCzOT82vdWrVX6IYYJiTw+WA1dCjx0ySC9NTGNUdshtscWTDX1PgCz3TWLDP+BcK0rY10TPZAaXW1aahYv96hXre4Ay2Yh3XQfg3rBAK5zfCH/lVpKYnDdl0gIhj1VkQNvUSXIfQIeOnDFv16fe283Grd+jtvseG2JMNU6o+A0Kuw3jA+6u0e39UlfCLsChX2CvO7nnQ/Ce0qWJ/0tUDv7Xq8XTdEAnRO4mKaD0B+wSrnB4/C+/FhAJ37+Fns8qd9P3/H6f6q0In8RtJ/gA3/C8Ky3JzOKALyNfjIOpCNn20jcVWZm3mgKdOFlYHIaRwhv5HQrRuf6vSw+9tzjpEZhHMsQdKYgKw1hQp1CSo9lqHWWoFui5Iu7jGiGy6KBrBgMoMwaAck/V4hG3QRFeo9qIx7B7XBwKHbdhhcs8dMYJoub4yj4ALTC+xMSckeueQwih/9Rn0LI+dmx/xHLrYEXd2WW1+YkLdxQrnrXkSBYorwyR6GIRBkJoez1EYkX5tGYR9UzxRXl9Ub4yi4wPQCO1NSpl8uqxwI5kr/N+obsj43zFtU/0cudvPQ1S0BfdkTad5jmVvuuhfiwaCYInxCFIOoE2R8L4ez1GaNar42nfUU1V6fpTM+zhgsgr9Ws8YQjgjEQ2pIHZFwKK8iGHdlvONZUViqYBPuVNXKOdHNxOl69+4022W1AgAAAA==') format('woff2'),
+  url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.woff?t=1597053007901') format('woff'),
+  url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.ttf?t=1597053007901') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.svg?t=1597053007901#platfont') format('svg'); /* iOS 4.1- */
+}
+
+.platfont {
+  font-family: "platfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconplat-system:before {
+  content: "\e608";
+}
+
+.iconplat-save:before {
+  content: "\e6d9";
+}
+
+.iconplat-fold-line:before {
+  content: "\e61e";
+}
+
+.iconplat-init:before {
+  content: "\e61f";
+}
+
+.iconplat-noconnect:before {
+  content: "\e61d";
+}
+
+.iconplat-grid:before {
+  content: "\e8e0";
+}
+
+
 //主题
 $danger: #f56c6c;
 $success: #49cd45;

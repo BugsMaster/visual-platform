@@ -9,6 +9,7 @@
 
 - Node.js: ^8.9.1
 - Vue: ^2.6.10
+- element-ui: ^2.11.1
 - DataV（默认不引入）："@jiaminghi/data-view": "^2.9.4"
 - sass-loader：^7.1.0
 
@@ -91,7 +92,6 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
                         title:{name:'one',size:18,position:{x:20,y:20},color:'#fff',isShow:true},
                         width:500,
                         height:300,
-                        borderOptions:{},
                         position:{
                             x:0,
                             y:0
@@ -99,7 +99,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
                     },
                     {
                         borderOptions:{
-                            type:1
+                            type:0
                         },
                         position:{
                             x:500,
@@ -109,7 +109,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
                     {
                         title:{name:'eight',size:18,position:{x:20,y:20},color:'#fff',isShow:true},
                         borderOptions:{
-                            type:11,
+                            type:0,//DataV border-11
                             title:'打豆豆',
                             titleWidth:200,
                         },
@@ -123,7 +123,9 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	调用 `visualSetOptions`方法，设置自定义参数
 	this.mainConfig = visualSetOptions(this.defConfig);
 	
-	注：visualConfig 可以导出完整的默认配置
+	注：
+		- 初始化设置参数时在Created生命周期内
+		- visualConfig 可以导出完整的默认配置
 
 ## 效果： ##
 
