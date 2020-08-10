@@ -12,8 +12,6 @@
 - DataV（默认不引入）："@jiaminghi/data-view": "^2.9.4"
 - sass-loader：^7.1.0
 
-![](https://img2020.cnblogs.com/blog/1079640/202008/1079640-20200810164306795-1780057224.png)
-
 安装：
 
 	$ npm install visual-platform
@@ -127,6 +125,8 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	
 	注：visualConfig 可以导出完整的默认配置
 
+## 效果： ##
 
+![](https://img2020.cnblogs.com/blog/1079640/202008/1079640-20200810164306795-1780057224.png)
 
 >作者邮箱: lixingtan163@163.com
