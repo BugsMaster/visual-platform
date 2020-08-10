@@ -12,6 +12,8 @@
 - DataV（默认不引入）："@jiaminghi/data-view": "^2.9.4"
 - sass-loader：^7.1.0
 
+![](https://img2020.cnblogs.com/blog/1079640/202008/1079640-20200810164306795-1780057224.png)
+
 安装：
 
 	$ npm install visual-platform
@@ -25,7 +27,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 默认配置：
 
     visualConfig ={
-	    bgcPath:'/img/bg_index.jpg',//背景图地址
+	    bgcPath:'/img/bg_index.jpg',//背景图在线地址 http://ids.nuctech.com/static/img/bg_index.9af20a2.jpg
 	    title:{
 	        name:"可视化平台",
 	        top:0,//主title高度
@@ -124,6 +126,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	this.mainConfig = visualSetOptions(this.defConfig);
 	
 	注：visualConfig 可以导出完整的默认配置
+
 
 
 >作者邮箱: lixingtan163@163.com
