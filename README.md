@@ -126,6 +126,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	注：
 		- 初始化设置参数时在Created生命周期内
 		- visualConfig 可以导出完整的默认配置
+        - 按`H`键隐藏/显示操作台
 
 ## 效果： ##
 
