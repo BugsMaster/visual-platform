@@ -207,8 +207,15 @@ export default {
     mounted() {
         let that = this;
         document.onkeydown = function (event) {
-            if(event.keyCode==72){
-                that.isPanelShow = !that.isPanelShow;
+            switch (event.keyCode) {
+                case 69:
+                    that.isEditModel=!that.isEditModel;
+                    break;
+                case 72:
+                    that.isPanelShow = !that.isPanelShow;
+                    break;
+                default:
+                    break;
             }
         };
     },
@@ -484,6 +491,7 @@ $greyLight: #e7ebed;
                 top:30px;
                 left:30px;
                 color: #ddd;
+                z-index: 1000;
             }
             .edit{
                 display: none;
@@ -518,6 +526,7 @@ $greyLight: #e7ebed;
                 top:30px;
                 left:30px;
                 color: #ddd;
+                z-index: 1000;
             }
             .chart-content{
                 height: 100%;
