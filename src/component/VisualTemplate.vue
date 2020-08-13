@@ -24,7 +24,7 @@
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
                     <section-chart :borderOptions="item.borderOptions">
                         <div class="chart-content" slot="chart-content">
-                            <slot :name="index"></slot>
+                            <slot :name="index+1"></slot>
                         </div>
                     </section-chart>
                 </li>
