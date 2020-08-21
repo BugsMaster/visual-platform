@@ -127,10 +127,10 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 		- 初始化设置参数时在Created生命周期内
 		- visualConfig 可以导出完整的默认配置
 		- 按`H`键隐藏/显示操作台
-		- 按`E`键编辑模式切换
+        - 按`E`键编辑模式切换
 
 ## 效果： ##
 
 ![](https://img2020.cnblogs.com/blog/1079640/202008/1079640-20200810164306795-1780057224.png)
 
->作者邮箱: lixingtan163@163.com
+> E-mail: lixingtan163@163.com
