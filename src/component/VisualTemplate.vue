@@ -31,8 +31,8 @@
             </ul>
             <div class="operation-panel" v-if="isPanelShow">
                 <ul class="operation-ul">
-                    <li @click="initApp"><span class="platfont  iconplat-init" title="位置初始化"></span></li>
-                    <li @click="gridApp"><span class="platfont  iconplat-grid" title="格式化位置"></span></li>
+                    <li @click="initApp"><span class="platfont iconplat-init" title="位置初始化"></span></li>
+                    <li @click="gridApp"><span class="platfont iconplat-grid" title="格式化位置"></span></li>
                     <li @click="isEditModel=!isEditModel"><span class="platfont  iconplat-fold-line" :class="{'green':isEditModel}"></span></li>
                     <li @click="editMain"><span class="platfont  iconplat-system"></span></li>
                     <li @click="clearConfig"><span class="platfont  iconplat-noconnect" title="清除"></span></li>
@@ -231,8 +231,8 @@ export default {
         gridApp(){
             this.sectionArr.forEach(item=>{
                 item.position={
-                    x:Math.floor(item.position.x/20)*20,
-                    y:Math.floor(item.position.y/20)*20
+                    x:Math.round(item.position.x/20)*20,
+                    y:Math.round(item.position.y/20)*20
                 }
             });   
         },
