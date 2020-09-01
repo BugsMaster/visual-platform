@@ -22,6 +22,157 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 >DataV地址： [http://datav.jiaminghi.com/guide/borderBox.html](http://datav.jiaminghi.com/guide/borderBox.html "DataV")
 
 ----------
+### Config属性 ###
+
+<table border="0" align="center" cellspacing="0" cellpadding="0">
+    <tr>
+        <th>Option</th>
+		<th>Sub</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>default</th>
+    </tr>
+ 	<tr align="center">
+		<td>bgcPath</td>
+		<td>--</td>
+        <td>背景图片地址</td>
+        <td>String</td>
+        <td>true</td>
+		<td>''</td>
+    </tr>
+	<tr align="center">
+        <td rowspan="5">title</td>
+		<td>name</td>
+		<td>标题</td>
+        <td>String</td>
+		<td>false</td>
+        <td>'可视化平台'</td>
+    </tr>
+	<tr align="center">
+		<td>top</td>
+        <td>高度</td>
+        <td>Number</td>
+        <td>false</td>
+		<td>0</td>
+    </tr>
+	<tr align="center">
+		<td>size</td>
+        <td>文字大小</td>
+        <td>Number</td>
+        <td>false</td>
+		<td>16</td>
+    </tr>
+	<tr align="center">
+		<td>color</td>
+        <td>文字颜色</td>
+        <td>String</td>
+        <td>false</td>
+		<td>'#fff'</td>
+    </tr>
+	<tr align="center">
+		<td>timeShow</td>
+        <td>显示时间戳</td>
+        <td>Boolean</td>
+        <td>false</td>
+		<td>true</td>
+    </tr>
+    <tr align="center">
+        <td>sectionArr</td>
+		<td>--</td>
+        <td>单元配置</td>
+        <td>Array</td>
+        <td>true</td>
+		<td>[]</td>
+    </tr>
+</table>
+### sectionArr 单元配置 ###
+
+<table border="0" align="center" cellspacing="0" cellpadding="0">
+	<tr>
+        <th>Option</th>
+		<th>Sub</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>default</th>
+    </tr>
+	<tr align="center">
+		<td rowspan="5">title</td>
+		<td>name</td>
+		<td>标题</td>
+        <td>String</td>
+		<td>false</td>
+        <td>''</td>
+    </tr>
+	<tr align="center">
+		<td>size</td>
+        <td>文字大小</td>
+        <td>Number</td>
+        <td>false</td>
+		<td>16</td>
+    </tr>
+	<tr align="center">
+		<td>color</td>
+        <td>文字颜色</td>
+        <td>String</td>
+        <td>false</td>
+		<td>'#fff'</td>
+    </tr>
+	<tr align="center">
+		<td>position</td>
+        <td>标题位置</td>
+        <td>Object</td>
+        <td>false</td>
+		<td>{x:20,y:20}</td>
+    </tr>
+	<tr align="center">
+		<td>isShow</td>
+        <td>显示/隐藏</td>
+        <td>Boolean</td>
+        <td>false</td>
+		<td>true</td>
+    </tr>
+	<tr align="center">
+		<td>width</td>
+		<td>--</td>
+		<td>宽度</td>
+        <td>Number</td>
+		<td>false</td>
+        <td>500</td>
+    </tr>
+	<tr align="center">
+		<td>height</td>
+		<td>--</td>
+		<td>高度</td>
+        <td>Number</td>
+		<td>false</td>
+        <td>300</td>
+    </tr>
+	<tr align="center">
+		<td>height</td>
+		<td>--</td>
+		<td>高度</td>
+        <td>Number</td>
+		<td>false</td>
+        <td>300</td>
+    </tr>
+	<tr align="center">
+		<td rowspan="5">borderOptions</td>
+		<td>type</td>
+		<td>边框类型</td>
+        <td>Number</td>
+		<td>true</td>
+        <td>0 (无边框，默认不引入DataV)，index和DataV对应</td>
+    </tr>
+	<tr align="center">
+		<td>colorArr</td>
+		<td>边框颜色</td>
+        <td>Array</td>
+		<td>false</td>
+        <td>['red', 'green']</td>
+    </tr>
+</table>
 
 默认配置：
 
@@ -43,7 +194,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	           	borderOptions:{
 	             	type:0,
 	             	colorArr:"[]",
-	             	backgroundColor:'blue',
+	             	bgColor:'blue',
 	             	reverse:false,
 	             	dur:3,
 	             	title:'',

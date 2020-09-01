@@ -181,7 +181,7 @@ export default {
             sectionArr:[],
             saveConfigData:{},
             // 全局环境变量
-            isEditModel:true,
+            isEditModel:false,
             isPanelShow:true,
         }
     },

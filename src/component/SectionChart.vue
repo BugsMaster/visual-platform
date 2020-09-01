@@ -3,7 +3,7 @@
         <component v-if="borderOptions.type"
             :is="'dv-border-box-'+borderOptions.type"
             :color="borderOptions.colorArr" 
-            :backgroundColor="borderOptions.backgroundColor"
+            :backgroundColor="borderOptions.bgColor"
             :reverse="borderOptions.reverse"
             :title="borderOptions.title"
             :titleWidth="borderOptions.titleWidth"
