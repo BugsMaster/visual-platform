@@ -22,6 +22,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 >DataV地址： [http://datav.jiaminghi.com/guide/borderBox.html](http://datav.jiaminghi.com/guide/borderBox.html "DataV")
 
 ----------
+
 ### Config属性 ###
 
 <table border="0" align="center" cellspacing="0" cellpadding="0">
@@ -86,6 +87,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 		<td>[]</td>
     </tr>
 </table>
+
 ### sectionArr 单元配置 ###
 
 <table border="0" align="center" cellspacing="0" cellpadding="0">
@@ -96,6 +98,30 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
         <th>Type</th>
         <th>Required</th>
         <th>default</th>
+    </tr>
+	<tr align="center">
+		<td>width</td>
+		<td>--</td>
+		<td>宽度</td>
+        <td>Number</td>
+		<td>false</td>
+        <td>500</td>
+    </tr>
+	<tr align="center">
+		<td>height</td>
+		<td>--</td>
+		<td>高度</td>
+        <td>Number</td>
+		<td>false</td>
+        <td>300</td>
+    </tr>
+	<tr align="center">
+		<td>position</td>
+		<td>x / y</td>
+		<td>绝对定位</td>
+        <td>Number</td>
+		<td>false</td>
+        <td>{ x:0,y:0 }</td>
     </tr>
 	<tr align="center">
 		<td rowspan="5">title</td>
@@ -134,31 +160,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 		<td>true</td>
     </tr>
 	<tr align="center">
-		<td>width</td>
-		<td>--</td>
-		<td>宽度</td>
-        <td>Number</td>
-		<td>false</td>
-        <td>500</td>
-    </tr>
-	<tr align="center">
-		<td>height</td>
-		<td>--</td>
-		<td>高度</td>
-        <td>Number</td>
-		<td>false</td>
-        <td>300</td>
-    </tr>
-	<tr align="center">
-		<td>height</td>
-		<td>--</td>
-		<td>高度</td>
-        <td>Number</td>
-		<td>false</td>
-        <td>300</td>
-    </tr>
-	<tr align="center">
-		<td rowspan="5">borderOptions</td>
+		<td rowspan="8">borderOptions</td>
 		<td>type</td>
 		<td>边框类型</td>
         <td>Number</td>
@@ -171,6 +173,41 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
         <td>Array</td>
 		<td>false</td>
         <td>['red', 'green']</td>
+    </tr>
+	<tr align="center">
+		<td>bgColor</td>
+		<td>背景颜色</td>
+        <td>String</td>
+		<td>false</td>
+        <td>'blue'</td>
+    </tr>
+	<tr align="center">
+		<td>reverse</td>
+		<td>反向</td>
+        <td>Boolean</td>
+        <td>false</td>
+		<td>true</td>
+    </tr>
+	<tr align="center">
+		<td>dur</td>
+		<td>动画时长</td>
+        <td>Number</td>
+        <td>false</td>
+		<td>3</td>
+    </tr>
+	<tr align="center">
+		<td>title</td>
+		<td>边框标题</td>
+        <td>String</td>
+        <td>false</td>
+		<td>''</td>
+    </tr>
+	<tr align="center">
+		<td>titleWidth</td>
+		<td>边框宽度</td>
+        <td>Number</td>
+        <td>false</td>
+		<td>250</td>
     </tr>
 </table>
 

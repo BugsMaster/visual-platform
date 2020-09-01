@@ -73,7 +73,7 @@ const visualSetOptions = function(deconfig){
                             // borderOptions
                             if(item.hasOwnProperty('borderOptions')){
                                 if(!item.borderOptions.hasOwnProperty('type')) { item.borderOptions['type'] = 0};
-                                if(!item.borderOptions.hasOwnProperty('colorArr')) { item.borderOptions['colorArr'] = [] };
+                                if(!item.borderOptions.hasOwnProperty('colorArr')) { item.borderOptions['colorArr'] = ['red', 'green'] };
                                 if(!item.borderOptions.hasOwnProperty('bgColor')) { item.borderOptions['bgColor'] = 'rgba(35,70,107,.3)' };
                                 if(!item.borderOptions.hasOwnProperty('reverse')) { item.borderOptions['reverse'] = false };
                                 if(!item.borderOptions.hasOwnProperty('dur')) { item.borderOptions['dur'] = 3;};
@@ -82,7 +82,7 @@ const visualSetOptions = function(deconfig){
                             }else{
                                 item.borderOptions = {
                                     type:0,
-                                    colorArr:[],
+                                    colorArr:['red', 'green'],
                                     bgColor:'rgba(35,70,107,.3)',
                                     reverse:false,
                                     dur:3,
