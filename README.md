@@ -32,7 +32,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
         <th>Description</th>
         <th>Type</th>
         <th>Required</th>
-        <th>default</th>
+        <th>Default</th>
     </tr>
  	<tr align="center">
 		<td>bgcPath</td>
@@ -97,7 +97,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
         <th>Description</th>
         <th>Type</th>
         <th>Required</th>
-        <th>default</th>
+        <th>Default</th>
     </tr>
 	<tr align="center">
 		<td>width</td>

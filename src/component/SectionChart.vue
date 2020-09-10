@@ -4,6 +4,7 @@
             :is="'dv-border-box-'+borderOptions.type"
             :color="borderOptions.colorArr" 
             :backgroundColor="borderOptions.bgColor"
+			:dur="borderOptions.dur"
             :reverse="borderOptions.reverse"
             :title="borderOptions.title"
             :titleWidth="borderOptions.titleWidth"
