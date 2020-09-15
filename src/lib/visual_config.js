@@ -73,8 +73,8 @@ const visualSetOptions = function(deconfig){
                             // borderOptions
                             if(item.hasOwnProperty('borderOptions')){
                                 if(!item.borderOptions.hasOwnProperty('type')) { item.borderOptions['type'] = 0};
-                                if(!item.borderOptions.hasOwnProperty('colorArr')) { item.borderOptions['colorArr'] = ['red', 'green'] };
-                                if(!item.borderOptions.hasOwnProperty('bgColor')) { item.borderOptions['bgColor'] = 'rgba(35,70,107,.3)' };
+                                if(!item.borderOptions.hasOwnProperty('colorArr')) { item.borderOptions['colorArr'] = ['steelblue'] };
+                                if(!item.borderOptions.hasOwnProperty('bgColor')) { item.borderOptions['bgColor'] = 'rgba(25,25,40,.5)' };
                                 if(!item.borderOptions.hasOwnProperty('reverse')) { item.borderOptions['reverse'] = false };
                                 if(!item.borderOptions.hasOwnProperty('dur')) { item.borderOptions['dur'] = 3;};
                                 if(!item.borderOptions.hasOwnProperty('title')) { item.borderOptions['title'] = '';};
@@ -82,8 +82,8 @@ const visualSetOptions = function(deconfig){
                             }else{
                                 item.borderOptions = {
                                     type:0,
-                                    colorArr:['red', 'green'],
-                                    bgColor:'rgba(35,70,107,.3)',
+                                    colorArr:['steelblue'],
+                                    bgColor:'rgba(25,25,40,.5)',
                                     reverse:false,
                                     dur:3,
                                     title:'',
