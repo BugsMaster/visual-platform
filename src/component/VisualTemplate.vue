@@ -7,26 +7,30 @@
             </div>
             <ul class="section-ul" v-if="isEditModel">
                 <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
-                 v-for="(item,index) in sectionArr"
-                 @mousedown="dragMove($event,index)">
+                 v-for="(item,index) in sectionArr">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
-                    <section-chart :borderOptions="item.borderOptions">
-                        <div class="chart-content" slot="chart-content">
-                            <slot :name="index+1"></slot>
-                        </div>
-                    </section-chart>
-                    <span class="edit el-icon-edit" @click="editRec(item,index)"></span>
+                    <div class="wraper" @mousedown="dragMove($event,index)">
+                        <section-chart :borderOptions="item.borderOptions">
+                            <div class="chart-content" slot="chart-content">
+                                <slot :name="index+1"></slot>
+                            </div>
+                        </section-chart>
+                    </div>
+                    <span class="edit platfont iconplat-edit" @click.stop="editRec(item,index)"></span>
+                    <span class="scale platfont iconplat-scale" @mousedown="scaleMove($event,index)"></span>
                 </li>
             </ul>
             <ul class="section-ul-view" v-else>
                 <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
                  v-for="(item,index) in sectionArr">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
-                    <section-chart :borderOptions="item.borderOptions">
-                        <div class="chart-content" slot="chart-content">
-                            <slot :name="index+1"></slot>
-                        </div>
-                    </section-chart>
+                    <div class="wraper">
+                        <section-chart :borderOptions="item.borderOptions">
+                            <div class="chart-content" slot="chart-content">
+                                <slot :name="index+1"></slot>
+                            </div>
+                        </section-chart>
+                    </div>
                 </li>
             </ul>
             <div class="operation-panel" v-if="isPanelShow">
@@ -182,7 +186,7 @@ export default {
             saveConfigData:{},
             // 全局环境变量
             isEditModel:false,
-            isPanelShow:true,
+            isPanelShow:false,
         }
     },
     props: {
@@ -337,7 +341,7 @@ export default {
         // 鼠标手势
         dragMove(e,index) {
             this.sectionIndex = index;
-            let odiv = e.currentTarget;
+            let odiv = e.currentTarget.parentNode;
             //算出鼠标相对元素的位置
             let disX = e.clientX - odiv.offsetLeft;
             let disY = e.clientY - odiv.offsetTop;
@@ -354,6 +358,25 @@ export default {
                 document.onmouseup = null;
             };
         },
+        scaleMove(e,index){
+            this.sectionIndex = index;
+            let odiv = e.currentTarget;
+            //算出鼠标相对元素的位置
+            let disX = e.clientX - odiv.offsetLeft;
+            let disY = e.clientY - odiv.offsetTop;
+            document.onmousemove = (e)=>{ //鼠标按下并移动的事件
+            //用鼠标的位置减去鼠标相对元素的位置，得到元素的位置
+                let left = e.clientX - disX;
+                let top = e.clientY - disY;
+                //移动当前元素
+                this.sectionArr[this.sectionIndex].width = left+40;
+                this.sectionArr[this.sectionIndex].height = top+40;
+            };
+            document.onmouseup = (e) => {
+                document.onmousemove = null;
+                document.onmouseup = null;
+            };
+        }
     },
     watch: {
     },
@@ -361,12 +384,12 @@ export default {
 </script>
 <style scoped lang="scss">
 @font-face {font-family: "platfont";
-  src: url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.eot?t=1597053007901'); /* IE9 */
-  src: url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.eot?t=1597053007901#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAWwAAsAAAAACwgAAAVhAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDTgqIaIchATYCJAMcCxAABCAFhG0HXRtmCREVpOWRfXFgG3MP6iEQtULZ6OedYy7dUDY0mO/x8N9+v99nZq5g2iCJRrqvTsIji6SJKlYhJvjaf/8dLeH9PJ72fpJuWTIZ7ehmkE5I79wepLYHeDqozcFuAIT/vmv+gI2KMIdy9pNHfZQCpS/NaGlN7V9Jt8JhSqhdFeCVkOYAjZrQU5MA7EiouUlSQm4Tr+bFSkNuy5v3E+g2yRPaTEzPB1LBDwvESVNDFZAFv9LACK2rRs4tEM9QadN07AKAJ/f38Q3+QYKkysCP3TpOqAX+G/nyIc6q2EMThMftRTG4iIwloBCXaPwCHvCSs3djNydsAt1aSXojn9s8v/XyoUq1SjQryxlVu3XrF//gESpZkdREDdze26HuNmreSCUheLOSUPFmLSHzZiOh8HZLQuLjocNVJTcH92MMxDFA/GPUqXpShLmo3dU016W0dAM0PQ01NAj+ktHUOv+YxSJjZpHYMHIgEYlkFCXeAv4kR1eE8xewRlE7bZVNYamUptf6Rd5EuFBiEtOfAKzUiZbIEepNi2K4YAvx6D0OoIXda5VKhuMKFArhjRsVW6uWaymtg9t4Wz8BW3LUUXPTcfNivY3HzNQypFtVX35CiBGQ1g54vkQKrreIZRu6mXx07QIKiY3ra3MKFkuM6hpG5y9YegRTm01Qf9QpxQ2OlFMcl7V59fb9jjlWAMG9oGC5uUiZq2TQok2NaxUJvZzDOmXi2RsVQxdudRdjhhLLzBFDbTLRgzfgOLtpiZTd4kgd94nruRhmkUi+cSR7Iz13kHMo61qdLJLTtEJRzW6hKIbeKBUuaYmZFaptPC1ilHprBqewUlwLq6YR1UbjVLkWplkAdERefS7gTl344PYhKem/2wXLsQKje0b1LCsYa3mh4k1Kwr9z4RQnMD7Kq+cdNSZq4npPa6bAeDC76frh3pWbG5h45M+gnh7ECK3RaUvaElSqQVtP+6TasZJPBaxh1wRQ48dDF0PB5KK3o22bMF9FbStijJUFuyV8PQi5rSS89XDIQ7Y6hJ7q7KCemp6dfspocL1rv7d2ETnl3poDK7SKtVr3uo6nxFHDmopY1+n08KjCJleWnhYx1MPG8+vuJi48a4X23iDZsBkrcw7oyIIkw3JXqZcYYDlBCzOT82vdWrVX6IYYJiTw+WA1dCjx0ySC9NTGNUdshtscWTDX1PgCz3TWLDP+BcK0rY10TPZAaXW1aahYv96hXre4Ay2Yh3XQfg3rBAK5zfCH/lVpKYnDdl0gIhj1VkQNvUSXIfQIeOnDFv16fe283Grd+jtvseG2JMNU6o+A0Kuw3jA+6u0e39UlfCLsChX2CvO7nnQ/Ce0qWJ/0tUDv7Xq8XTdEAnRO4mKaD0B+wSrnB4/C+/FhAJ37+Fns8qd9P3/H6f6q0In8RtJ/gA3/C8Ky3JzOKALyNfjIOpCNn20jcVWZm3mgKdOFlYHIaRwhv5HQrRuf6vSw+9tzjpEZhHMsQdKYgKw1hQp1CSo9lqHWWoFui5Iu7jGiGy6KBrBgMoMwaAck/V4hG3QRFeo9qIx7B7XBwKHbdhhcs8dMYJoub4yj4ALTC+xMSckeueQwih/9Rn0LI+dmx/xHLrYEXd2WW1+YkLdxQrnrXkSBYorwyR6GIRBkJoez1EYkX5tGYR9UzxRXl9Ub4yi4wPQCO1NSpl8uqxwI5kr/N+obsj43zFtU/0cudvPQ1S0BfdkTad5jmVvuuhfiwaCYInxCFIOoE2R8L4ez1GaNar42nfUU1V6fpTM+zhgsgr9Ws8YQjgjEQ2pIHZFwKK8iGHdlvONZUViqYBPuVNXKOdHNxOl69+4022W1AgAAAA==') format('woff2'),
-  url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.woff?t=1597053007901') format('woff'),
-  url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.ttf?t=1597053007901') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('//at.alicdn.com/t/font_1989593_pmwo5gv12iq.svg?t=1597053007901#platfont') format('svg'); /* iOS 4.1- */
+  src: url('//at.alicdn.com/t/font_1989593_spfz69513pg.eot?t=1600163083194'); /* IE9 */
+  src: url('//at.alicdn.com/t/font_1989593_spfz69513pg.eot?t=1600163083194#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2'),
+  url('//at.alicdn.com/t/font_1989593_spfz69513pg.woff?t=1600163083194') format('woff'),
+  url('//at.alicdn.com/t/font_1989593_spfz69513pg.ttf?t=1600163083194') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('//at.alicdn.com/t/font_1989593_spfz69513pg.svg?t=1600163083194#platfont') format('svg'); /* iOS 4.1- */
 }
 
 .platfont {
@@ -375,6 +398,14 @@ export default {
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.iconplat-scale:before {
+  content: "\e72f";
+}
+
+.iconplat-edit:before {
+  content: "\e61b";
 }
 
 .iconplat-system:before {
@@ -400,6 +431,8 @@ export default {
 .iconplat-grid:before {
   content: "\e8e0";
 }
+
+
 
 
 //主题
@@ -476,13 +509,20 @@ $greyLight: #e7ebed;
         left: 0;
         top: 0;
         .section{
-            padding: 10px;
             border: 1px solid $mauve;
             position: absolute;
-            cursor: move;
+            .wraper{
+                cursor: move;
+                padding: 10px;
+                width: 100%;
+                height: 100%;
+            }
             &:hover{
                 border-color: $purpleLight;
                 .edit{
+                    display: block;
+                }
+                .scale{
                     display: block;
                 }
             }
@@ -505,7 +545,22 @@ $greyLight: #e7ebed;
                 font-size: 20px;
                 cursor: pointer;
                 &:hover{
-                    color: #fff;
+                    color: $olive;
+                }
+            }
+            .scale{
+                display: none;
+                position: absolute;
+                right: 0;
+                bottom: 0px;
+                background-color: $steel;
+                padding: 10px;
+                color: #ddd;
+                border-radius: 50% 0% 0% 0%;
+                font-size: 20px;
+                cursor: se-resize;
+                &:hover{
+                    color: $olive;
                 }
             }
             .chart-content{
@@ -518,9 +573,13 @@ $greyLight: #e7ebed;
         left: 0;
         top: 0;
         .section{
-            padding: 10px;
-            border: 1px solid transparent;
             position: absolute;
+            .wraper{
+                cursor: move;
+                padding: 10px;
+                width: 100%;
+                height: 100%;
+            }
             .title{
                 position: absolute;
                 top:30px;
