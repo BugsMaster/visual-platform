@@ -29,7 +29,22 @@ const visualConfig ={
         }
     ]
 };
+function isRepeat(arr) {
+    var hash = {};
+    for (var i in arr) {
+        if (hash[arr[i]]){
+            return true; 
+        }
+        hash[arr[i]] = true;
+    }
+    return false;
+}
 const visualSetOptions = function(deconfig){
+    let tempDeconfig = deconfig.sectionArr.map(item=>{
+        if(!item.id) console.error('单元块ID缺失！');
+        return item.id||0;
+    });
+    if(isRepeat(tempDeconfig)) return console.error('单元块ID必须唯一！');
     let initconfig = visualConfig;
     for (const key in initconfig) {
         if (initconfig.hasOwnProperty(key)) {

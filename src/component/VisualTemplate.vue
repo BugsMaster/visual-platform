@@ -27,7 +27,7 @@
                     <div class="wraper">
                         <section-chart :borderOptions="item.borderOptions">
                             <div class="chart-content" slot="chart-content">
-                                <slot :name="index+1"></slot>
+                                <slot :name="item.id"></slot>
                             </div>
                         </section-chart>
                     </div>
@@ -392,7 +392,6 @@ export default {
       url('../font/iconfont.ttf') format('truetype'),
       url('../font/iconfont.svg#platfont') format('svg');
 }
-
 .platfont {
   font-family: "platfont" !important;
   font-size: 16px;
