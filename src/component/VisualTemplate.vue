@@ -12,7 +12,7 @@
                     <div class="wraper" @mousedown="dragMove($event,index)">
                         <section-chart :borderOptions="item.borderOptions">
                             <div class="chart-content" slot="chart-content">
-                                <slot :name="index+1"></slot>
+                                <slot :name="item.id"></slot>
                             </div>
                         </section-chart>
                     </div>
@@ -90,6 +90,29 @@
                             </el-input-number>
                             ——
                             <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.top" clearable>
+                            </el-input-number>
+                        </el-form-item>
+                        <el-form-item label="背景颜色：">
+                            <el-color-picker v-model="chartForm.bgColor"></el-color-picker>
+                        </el-form-item>
+                        <h3 style="margin-bottom:20px;font-weight:700">边框设置</h3>
+                        <el-form-item label="样式序号：">
+                            <el-select v-model="chartForm.type" placeholder="请选择" size="mini">
+                                <el-option label="无" value="0"> </el-option>
+                                <el-option
+                                v-for="item in 13"
+                                :key="item"
+                                :label="'# '+item"
+                                :value="item">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item v-if="chartForm.type==11" label="边框名称：">
+                            <el-input size="small" placeholder="请输入" v-model="chartForm.borderTitle" clearable>
+                            </el-input>
+                        </el-form-item>
+                        <el-form-item v-if="chartForm.type==11" label="名称长度：">
+                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.borderTitleWidth" clearable>
                             </el-input-number>
                         </el-form-item>
                     </el-form>
@@ -178,7 +201,12 @@ export default {
                 width:null,
                 height:null,
                 left:null, 
-                top:null
+                top:null,
+                // border
+                type:0,
+                bgColor:'',
+                borderTitle:'',
+                borderTitleWidth:250
             },
             currentTime: new Date().toLocaleString(),
             sectionIndex:null,
@@ -303,6 +331,11 @@ export default {
                 height:item.height,
                 left:item.position.x,
                 top:item.position.y,
+                // border
+                type:item.borderOptions.type,
+                bgColor:item.borderOptions.bgColor,
+                borderTitle:item.borderOptions.title,
+                borderTitleWidth:item.borderOptions.titleWidth
             }
         },
         cancleChartForm(){
@@ -320,6 +353,11 @@ export default {
                 height:null,
                 left:null, 
                 top:null,
+                // border
+                type:0,
+                bgColor:'',
+                borderTitle:'',
+                borderTitleWidth:250
             }
         },
         confirmChartForm(){
@@ -335,6 +373,12 @@ export default {
             this.sectionArr[this.sectionIndex].position = {
                 x:this.chartForm.left,
                 y:this.chartForm.top
+            }  
+            this.sectionArr[this.sectionIndex].borderOptions = {
+                type:this.chartForm.type,
+                bgColor:this.chartForm.bgColor,
+                borderTitle:this.chartForm.title,
+                borderTitleWidth:this.chartForm.titleWidth
             }  
             this.cancleChartForm();
         },
@@ -574,6 +618,7 @@ $greyLight: #e7ebed;
         top: 0;
         .section{
             position: absolute;
+            border: 1px solid transparent;
             .wraper{
                 padding: 10px;
                 width: 100%;

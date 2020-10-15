@@ -1,6 +1,6 @@
 {
   "name": "visual-platform",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "基于Vue的可视化大屏GUI开发框架",
   "main": "index.js",
   "scripts": {
