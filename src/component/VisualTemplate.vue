@@ -269,7 +269,7 @@ export default {
             });   
         },
         clearConfig(){
-            Storage.clear();
+            Storage.remove('visualConfig');
             this.$message({ message: '清理当前配置成功', duration: 2000,type: 'success',
                 onClose:function(){
                     window.location.reload();  
