@@ -219,6 +219,12 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
     </tr>
 </table>
 
+控制台操作的回调函数：
+
+	 保存配置：@saveConfig 参数为修改后的Config
+
+	 清空配置：@clearConfig
+
 默认配置：
 
     visualConfig ={
@@ -254,12 +260,11 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
 	        },
 	    ]
 	};
-
-
+	
 使用：
 
 	组件：
-	<VisualTemplate :option="mainConfig">
+	<VisualTemplate :option="mainConfig" @clearConfig="clearConfig" @saveConfig="saveConfig">
             <!-- 依次写出需要展示的单元，单元数（sectionArr.length）
             <div class="box" :slot="index" v-for="(item,index) in mainConfig.sectionArr">
                 <span>{{item}}</span>   
@@ -286,6 +291,7 @@ Notice：单元边框样式基于 [DataV](http://datav.jiaminghi.com/guide/borde
                 },
                 sectionArr:[
                     {
+						id:'1',//对应的slot标识
                         title:{name:'one',size:18,position:{x:20,y:20},color:'#fff',isShow:true},
                         width:500,
                         height:300,

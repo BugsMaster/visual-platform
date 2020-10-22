@@ -225,18 +225,11 @@ export default {
         setInterval(() => {
             this.currentTime = new Date().toLocaleString();
         }, 1000);
-        let visualConfig = Storage.get("visualConfig");
-        if(visualConfig){
-            this.bgcPath = visualConfig.bgcPath;
-            this.title = visualConfig.title;
-            this.sectionArr = visualConfig.sectionArr;
-        }else{
-            this.bgcPath = this.option.bgcPath;
-            this.title = this.option.title;
-            this.sectionArr = this.option.sectionArr;
-        }
     },
     mounted() {
+        this.bgcPath = this.option.bgcPath;
+        this.title = this.option.title;
+        this.sectionArr = this.option.sectionArr;
         let that = this;
         document.onkeydown = function (event) {
             switch (event.keyCode) {
@@ -270,11 +263,7 @@ export default {
         },
         clearConfig(){
             Storage.remove('visualConfig');
-            this.$message({ message: '清理当前配置成功', duration: 2000,type: 'success',
-                onClose:function(){
-                    window.location.reload();  
-                }
-            });
+            this.$emit('clearConfig',true);
         },
         saveConfig(){
             this.saveConfigData={
@@ -283,7 +272,7 @@ export default {
                 sectionArr:this.sectionArr
             }
             Storage.set('visualConfig', this.saveConfigData);
-            this.$message.success('保存配置成功');
+            this.$emit('saveConfig',this.saveConfigData);
         },
         // 主配置
         editMain(){
@@ -431,7 +420,7 @@ export default {
     　　　　},
     　　　　deep: true
     　　}
-    }
+    },
 };
 </script>
 <style scoped lang="scss">
