@@ -423,7 +423,15 @@ export default {
         }
     },
     watch: {
-    },
+        option: {
+    　　　　 handler(newValue, oldValue) {
+                this.bgcPath = this.option.bgcPath;
+                this.title = this.option.title;
+                this.sectionArr = this.option.sectionArr;
+    　　　　},
+    　　　　deep: true
+    　　}
+    }
 };
 </script>
 <style scoped lang="scss">
