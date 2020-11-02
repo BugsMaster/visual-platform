@@ -9,13 +9,14 @@
                 <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
                  v-for="(item,index) in sectionArr">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
-                    <div class="wraper" @mousedown="dragMove($event,index)">
+                    <div class="wraper">
                         <section-chart :borderOptions="item.borderOptions">
                             <div class="chart-content" slot="chart-content">
                                 <slot :name="item.id"></slot>
                             </div>
                         </section-chart>
                     </div>
+                    <div class="mask" @mousedown="dragMove($event,index)"></div>
                     <span class="edit platfont iconplat-edit" @click.stop="editRec(item,index)"></span>
                     <span class="scale platfont iconplat-scale" @mousedown="scaleMove($event,index)"></span>
                 </li>
@@ -395,15 +396,15 @@ export default {
             this.sectionIndex = index;
             let odiv = e.currentTarget;
             //算出鼠标相对元素的位置
-            let disX = e.clientX - odiv.offsetLeft;
-            let disY = e.clientY - odiv.offsetTop;
+            let disX = e.clientX - odiv.offsetLeft+8;
+            let disY = e.clientY - odiv.offsetTop+5;
             document.onmousemove = (e)=>{ //鼠标按下并移动的事件
             //用鼠标的位置减去鼠标相对元素的位置，得到元素的位置
                 let left = e.clientX - disX;
                 let top = e.clientY - disY;
                 //移动当前元素
-                this.sectionArr[this.sectionIndex].width = left+40;
-                this.sectionArr[this.sectionIndex].height = top+40;
+                this.sectionArr[this.sectionIndex].width = left+50;
+                this.sectionArr[this.sectionIndex].height = top+50;
             };
             document.onmouseup = (e) => {
                 document.onmousemove = null;
@@ -553,13 +554,15 @@ $greyLight: #e7ebed;
             border: 1px solid $mauve;
             position: absolute;
             .wraper{
-                cursor: move;
                 padding: 10px;
                 width: 100%;
                 height: 100%;
             }
             &:hover{
                 border-color: $purpleLight;
+                .mask{
+                    background-color: rgba(197, 124, 247, 0.3);
+                }
                 .edit{
                     display: block;
                 }
@@ -574,6 +577,15 @@ $greyLight: #e7ebed;
                 color: #ddd;
                 z-index: 1000;
             }
+            .mask{
+                position: absolute;
+                top:0;
+                bottom:0;
+                left:0;
+                right:0;
+                z-index: 100;
+                cursor: move;
+            }
             .edit{
                 display: none;
                 position: absolute;
@@ -585,6 +597,7 @@ $greyLight: #e7ebed;
                 border-radius: 0% 0% 0% 50%;
                 font-size: 20px;
                 cursor: pointer;
+                z-index: 101;
                 &:hover{
                     color: $olive;
                 }
@@ -600,6 +613,7 @@ $greyLight: #e7ebed;
                 border-radius: 50% 0% 0% 0%;
                 font-size: 20px;
                 cursor: se-resize;
+                z-index: 101;
                 &:hover{
                     color: $olive;
                 }
