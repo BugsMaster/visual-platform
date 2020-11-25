@@ -24,7 +24,8 @@ const visualConfig ={
             },
             position:{
                 x:0,
-                y:0
+                y:0,
+                zIndex:1
             },
         }
     ]
@@ -84,7 +85,11 @@ const visualSetOptions = function(deconfig){
                             }
                             if(!item.hasOwnProperty('width')){ item.width = 500 };
                             if(!item.hasOwnProperty('height')){ item.height = 300 };
-                            if(!item.hasOwnProperty('position')){ item.position = {x:20*index,y:20*index}};
+                            if(!item.hasOwnProperty('position')){ 
+                                item.position = {x:20*index,y:20*index,zIndex:1}
+                            }else{
+                                item.position.zIndex = item.position.zIndex||1;
+                            }
                             // borderOptions
                             if(item.hasOwnProperty('borderOptions')){
                                 if(!item.borderOptions.hasOwnProperty('type')) { item.borderOptions['type'] = 0};

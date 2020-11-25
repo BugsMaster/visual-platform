@@ -1,12 +1,12 @@
 <template>
     <div id="visual" class="visual">
         <div class="layoutbox bgc" :style="{backgroundImage:`url(${bgcPath})`}">
-            <div class="title-box">
-                <h1 :style="{fontSize:title.size,color:title.color,paddingTop:title.top+'px'}">{{title.name}}</h1>
+            <div class="title-box" :style="{top:title.top+'px'}">
+                <h1 :style="{fontSize:title.size,color:title.color}">{{title.name}}</h1>
                 <h3 v-if="title.timeShow">{{currentTime}}</h3>
             </div>
             <ul class="section-ul" v-if="isEditModel">
-                <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
+                <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:item.position.zIndex,left:item.position.x+'px',top:item.position.y+'px'}"
                  v-for="(item,index) in sectionArr">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
                     <div class="wraper">
@@ -22,7 +22,7 @@
                 </li>
             </ul>
             <ul class="section-ul-view" v-else>
-                <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:index+10,left:item.position.x+'px',top:item.position.y+'px'}"
+                <li class="section" :style="{width:item.width+'px',height:item.height+'px',zIndex:item.position.zIndex,left:item.position.x+'px',top:item.position.y+'px'}"
                  v-for="(item,index) in sectionArr">
                     <h3 v-if="item.title.isShow" class="title" :style="{fontSize:item.title.size+'px',left:item.title.position.x+'px',top:item.title.position.y+'px',color:item.title.color}">{{item.title.name}}</h3>
                     <div class="wraper">
@@ -93,6 +93,9 @@
                             <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.top" clearable>
                             </el-input-number>
                         </el-form-item>
+                        <el-form-item label="层级：">
+                            <el-input-number size="small" placeholder="请输入" v-model="chartForm.zIndex" :min="0" step="1" clearable></el-input-number>
+                        </el-form-item>
                         <el-form-item label="背景颜色：">
                             <el-color-picker v-model="chartForm.bgColor"></el-color-picker>
                         </el-form-item>
@@ -136,13 +139,13 @@
             <div class="drawer_box">
                 <div class="drawer_content">
                     <el-form label-position="right" label-width="100px" ref="mainForm">
-                        <el-form-item label="标题" prop="name">
+                        <el-form-item label="标题：" prop="name">
                             <el-input size="small" placeholder="请输入" v-model="mainForm.name" clearable></el-input>
                         </el-form-item>
-                        <el-form-item label="字体大小" prop="size">
+                        <el-form-item label="字体大小：" prop="size">
                             <el-input-number size="small" placeholder="请输入" v-model="mainForm.size" :min="14" clearable></el-input-number>
                         </el-form-item>
-                        <el-form-item label="Top" prop="top">
+                        <el-form-item label="Top：" prop="top">
                             <el-input-number size="small" placeholder="请输入" v-model="mainForm.top" :min="0" clearable></el-input-number>
                         </el-form-item>
                         <el-form-item label="颜色：">
@@ -203,6 +206,7 @@ export default {
                 height:null,
                 left:null, 
                 top:null,
+                zIndex:1,
                 // border
                 type:0,
                 bgColor:'',
@@ -321,6 +325,7 @@ export default {
                 height:item.height,
                 left:item.position.x,
                 top:item.position.y,
+                zIndex:item.position.zIndex,
                 // border
                 type:item.borderOptions.type,
                 bgColor:item.borderOptions.bgColor,
@@ -343,6 +348,7 @@ export default {
                 height:null,
                 left:null, 
                 top:null,
+                zIndex:1,
                 // border
                 type:0,
                 bgColor:'',
@@ -362,7 +368,8 @@ export default {
             this.sectionArr[this.sectionIndex].height = this.chartForm.height;
             this.sectionArr[this.sectionIndex].position = {
                 x:this.chartForm.left,
-                y:this.chartForm.top
+                y:this.chartForm.top,
+                zIndex:this.chartForm.zIndex,
             }  
             this.sectionArr[this.sectionIndex].borderOptions = {
                 type:this.chartForm.type,
@@ -424,6 +431,37 @@ export default {
     },
 };
 </script>
+<style lang="scss">
+$mauve: #9c26b0;
+.el-drawer__container{
+    .drawer{
+        overflow: auto;
+        .el-drawer__header{
+            border-bottom: 1px solid $mauve;
+            padding-bottom: 10px;
+            margin-bottom:20px;
+            color: $mauve;
+        }
+        .drawer_box{
+            height: 100%;
+            padding:0 20px;
+            display: flex;
+            flex-direction: column;
+            .drawer_content{
+                overflow: auto;
+                flex:1;
+            }
+            .drawer_footer{
+                padding:20px;
+                display: flex;
+                .el-button{
+                    flex:1;
+                }
+            }
+        }
+    }
+}
+</style>
 <style scoped lang="scss">
 @font-face {
   font-family: 'platfont';
@@ -531,19 +569,24 @@ $greyLight: #e7ebed;
         background-size: 100% 100%;
     }
     .title-box {
-        z-index: 20;
+        position: absolute;
+        z-index: 20000;
+        left: 50%;
+        transform: translateX(-50%);
         h1 {
             color: #ddd;
             font-size: 28px;
             text-align: center;
             font-weight: 700;
             letter-spacing: 4px;
+           
         }
         h3 {
             color: #ddd;
             line-height: 3;
             font-size: 18px;
             text-align: center;
+            z-index: 20000;
         }
     }
     .section-ul{
