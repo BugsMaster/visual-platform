@@ -2,7 +2,7 @@
     <div id="visual" class="visual">
         <div class="layoutbox bgc" :style="{backgroundImage:`url(${bgcPath})`}">
             <div class="title-box" :style="{top:title.top+'px'}">
-                <h1 :style="{fontSize:title.size,color:title.color}">{{title.name}}</h1>
+                <h1 :style="{fontSize:title.size+'px',color:title.color}">{{title.name}}</h1>
                 <h3 v-if="title.timeShow">{{currentTime}}</h3>
             </div>
             <ul class="section-ul" v-if="isEditModel">
@@ -63,16 +63,16 @@
                             </el-input>
                         </el-form-item>
                         <el-form-item label="字体大小">
-                            <el-input-number size="small" placeholder="请输入" v-model="chartForm.size" clearable></el-input-number>
+                            <el-input-number size="small" v-model="chartForm.size"></el-input-number>
                         </el-form-item>
                         <el-form-item label="颜色：">
                             <el-color-picker v-model="chartForm.color"></el-color-picker>
                         </el-form-item>
                         <el-form-item label="Left - Top(px)：">
-                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.leftTitle" clearable>
+                            <el-input-number style="width:120px" size="small" v-model="chartForm.leftTitle">
                             </el-input-number>
                             ——
-                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.topTitle" clearable>
+                            <el-input-number style="width:120px" size="small" v-model="chartForm.topTitle">
                             </el-input-number>
                         </el-form-item>
                         <el-form-item label="是否展示：">
@@ -80,21 +80,21 @@
                         </el-form-item>
                         <h3 style="margin-bottom:20px;font-weight:700">内容设置</h3>
                         <el-form-item label="宽 - 高 (px)：">
-                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.width" clearable>
+                            <el-input-number style="width:120px" size="small" v-model="chartForm.width">
                             </el-input-number>
                             ——
-                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.height" clearable>
+                            <el-input-number style="width:120px" size="small" v-model="chartForm.height">
                             </el-input-number>
                         </el-form-item>
                         <el-form-item label="X - Y (px)：">
-                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.left" clearable>
+                            <el-input-number style="width:120px" size="small" v-model="chartForm.left">
                             </el-input-number>
                             ——
-                            <el-input-number style="width:120px" size="small" placeholder="请输入" v-model="chartForm.top" clearable>
+                            <el-input-number style="width:120px" size="small" v-model="chartForm.top">
                             </el-input-number>
                         </el-form-item>
                         <el-form-item label="层级：">
-                            <el-input-number size="small" placeholder="请输入" v-model="chartForm.zIndex" :min="0" step="1" clearable></el-input-number>
+                            <el-input-number size="small" v-model="chartForm.zIndex" :min="0" :step="1"></el-input-number>
                         </el-form-item>
                         <el-form-item label="背景颜色：">
                             <el-color-picker v-model="chartForm.bgColor"></el-color-picker>
@@ -112,7 +112,7 @@
                             </el-select>
                         </el-form-item>
                         <el-form-item v-if="chartForm.type==11" label="边框名称：">
-                            <el-input size="small" placeholder="请输入" v-model="chartForm.borderTitle" clearable>
+                            <el-input size="small" v-model="chartForm.borderTitle">
                             </el-input>
                         </el-form-item>
                         <el-form-item v-if="chartForm.type==11" label="名称长度：">
@@ -252,19 +252,15 @@ export default {
     methods: {
         initApp(){
             this.sectionArr.forEach(item=>{
-                item.position={
-                    x:0,
-                    y:0
-                }
-            });   
+                item.position.x = 0;
+                item.position.y = 0;
+            });
         },
         gridApp(){
             this.sectionArr.forEach(item=>{
-                item.position={
-                    x:Math.round(item.position.x/20)*20,
-                    y:Math.round(item.position.y/20)*20
-                }
-            });   
+                item.position.x = Math.round(item.position.x/20)*20;
+                item.position.y = Math.round(item.position.y/20)*20;
+            });
         },
         clearConfig(){
             Storage.remove('visualConfig');
